@@ -1,0 +1,5 @@
+default:
+  test_mode: F
+
+test:
+  test_mode: T
