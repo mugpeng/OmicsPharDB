@@ -1,6 +1,2 @@
-
-# .v4p backup files
-*~.xml
-
-# Dynamic plugins .dll
-bin/
+# ignore
+*.Rhistory
