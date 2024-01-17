@@ -44,9 +44,10 @@ env <- environment()
 # Welcome notification
 str1 <- "Nice to meet you."
 str2 <- "Very welcome to my version 1.0. —24/01/17"
+str3 <- "You can visit https://github.com/mugpeng/OmicsPharDB to reach the toturial."
 modal_notification <- modalDialog(
   # p("Nice to meet you. \n, test"),
-  HTML(paste(str1, str2, sep = '<br/>')),
+  HTML(paste(str1, str2, str3, sep = '<br/>')),
   title = "Update Notification",
   footer = tagList(
     actionButton("close_modal", "Close")
@@ -89,7 +90,8 @@ ui <- tagList(
                         strong("Feel free to talk with me if you find any bugs or have any suggestions. :)"),
                         p(""),
                         p("Email: mugpeng@foxmail.com"),
-                        p("github: https://github.com/mugpeng")
+                        p("github: https://github.com/mugpeng"),
+                        p("You can visit https://github.com/mugpeng/OmicsPharDB to reach the toturial.")
                       ))
   )
 )

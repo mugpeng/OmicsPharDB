@@ -124,6 +124,8 @@ Lower metrics, higher sensitivity
 
 [Long Running Tasks With Shiny: Challenges and Solutions | R-bloggers](https://www.r-bloggers.com/2018/07/long-running-tasks-with-shiny-challenges-and-solutions/)
 
+Website text in welcome and contact
+
 
 
 # 0117
