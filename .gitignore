@@ -1,4 +1,4 @@
 # ignore
-*.Rhistory
+.Rhistory
 .Rproj.user
 /Input
