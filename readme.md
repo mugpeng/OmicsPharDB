@@ -407,6 +407,8 @@ The *Features database significant analysis* module is quite time-consuming.
 
 The selected feature needs to perform statistical calculations using all the feature data in the intersected database. Initially, I utilized Snowfall for parallel computing, but I abandoned it due to low efficiency during the launch stage(need to initiate every time). 
 
+Besides, snowfall could have potential risks that may induce error by garbage collection when interrupt it.
+
 similar question: [r - Snowfall sfApply() is slower than apply() - Stack Overflow](https://stackoverflow.com/questions/13209668/snowfall-sfapply-is-slower-than-apply)
 
 Are there any alternative methods to enhance the calculation speed?
