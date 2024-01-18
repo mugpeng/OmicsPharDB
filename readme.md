@@ -53,6 +53,14 @@ Version 1.0 has been released, containing data from six projects: CTRP1, CTRP2, 
 
 ![image-20240116134858293](http://cos01.mugpeng.top/img/image-20240116134858293.png)
 
+For more details, please check the `Others\DataInfo\Table1.docx` in backend directory:
+
+![](http://cos01.mugpeng.top/img/20240118094033.png)
+
+You can scroll down this readme, and download the raw data, scripts and others at *For developer* part.
+
+
+
 # How to run
 
 Fork the repository locally, open Rproj, just run `App.R`.
@@ -247,3 +255,181 @@ By the way, we can also double check it through *Drugs-omics pairs analysis* mod
 The features database significant analysis module may take long time.
 
 ![image-20240117152345215](http://cos01.mugpeng.top/img/image-20240117152345215.png)
+
+
+
+# For developers
+
+## Raw data and back end
+
+- GDSC
+
+mRNA array expression:
+
+[Home (cancerrxgene.org)](https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Home.html) : Cell_line_RMA_proc_basalExp.txt
+
+other omics: 
+
+https://orcestra.ca/pset/10.5281/zenodo.7829919
+
+GDSC1,2 drug AUC:
+
+https://depmap.org/portal/download/all/,  select "Sanger GDSC1 and GDSC2" dataset.  
+
+
+
+- CCLE
+
+All Omics: 
+
+https://depmap.org/portal/download/all/
+
+
+
+CTRP1,2 drug:
+
+https://portals.broadinstitute.org/ctrp.v1/ 
+
+https://portals.broadinstitute.org/ctrp.v2.1/   
+
+
+
+PRISM drug:
+
+  https://depmap.org/portal/download/all/,  select "PRISM Repurposing 19Q4 Primary Files" dataset.  
+
+
+
+- gCSI
+
+Both omics and drug data are from Orcestra:
+
+https://orcestra.ca/pset/10.5281/zenodo.4737437  
+
+
+
+For more details, please check the `Others\DataInfo\Table1.docx`:
+
+![](http://cos01.mugpeng.top/img/20240118094033.png)
+
+More details on the raw data, scripts, and backend preprocessing can be downloaded:
+
+OmicsPharBackend_240118 https://www.alipan.com/s/NzpAeNYN4qX , 75qi 
+
+The methodology and implementation details can be found in the preprint (may now be outdated):
+
+[OmicsPharLeuDB: an integrative database for mining pharmacogenomic data in acute lymphoblastic leukemia | bioRxiv](https://www.biorxiv.org/content/10.1101/2023.09.14.557519v1)
+
+
+
+## Code structure
+
+```
+├─App.R
+├─Input
+│  ├─01
+│  ├─02
+│  ├─03
+│  ├─04
+│  └─05
+├─Log
+│  └─图片
+├─Modules
+├─readme_backup
+│  └─图片
+├─Script
+└─Test
+    └─Test_Module
+```
+
+![](http://cos01.mugpeng.top/img/20240118103859.png)
+
+
+
+I have modularize my shiny project, The UI, server part, module scripts in the Modules files, and panel displayed on the websites are interconnected with each other:
+
+![](http://cos01.mugpeng.top/img/20240118105247.png)
+
+![](http://cos01.mugpeng.top/img/20240118105400.png)
+
+![](http://cos01.mugpeng.top/img/20240118110228.png)
+
+![](http://cos01.mugpeng.top/img/20240118110240.png)
+
+![](http://cos01.mugpeng.top/img/20240118105345.png)
+
+
+
+If you would like to fork this project and add new modules. there are several steps in short.
+
+1) Copy the existed module scripts.
+2) Change the UI and server for your own needs.
+3) Create a new `TabPanel` and use `callModule` function to call the corresponded server function.
+4) Test them until all bugs are eradicated.
+5) Share you coool new function with you friends, and I encourage you to pull requests to me! 
+6) Celebrate~
+
+
+
+You can also use the `Test` directory to test both new function and new modules:
+
+![](http://cos01.mugpeng.top/img/20240118110812.png)
+
+
+
+
+
+## Ways to learn shiny
+
+[Shiny - Welcome to Shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html)
+
+[Welcome | Mastering Shiny](https://mastering-shiny.org/)
+
+Chinese: [#shiny](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU5ODc3OTA0NQ==&action=getalbum&album_id=2812488349889626113&scene=173&subscene=7&sessionid=undefined&enterid=0&from_msgid=2247492282&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+
+
+
+## Walk with me
+
+If you have an interest in shiny, pharmacogenomics, or bioinformatics, and if you're enthusiastic about contributing to the open-source community, feel free to join me.
+
+ps: I'm also open to supporting you in your endeavors, carry me (抱紧你的大腿).
+
+I can also offer guidance and provide you with the opportunity to co-author a paper based on your contributions.
+
+
+
+Currently, there are several difficulties:
+
+- multithread or others to accelerate 
+
+The *Features database significant analysis* module is quite time-consuming.
+
+The selected feature needs to perform statistical calculations using all the feature data in the intersected database. Initially, I utilized Snowfall for parallel computing, but I abandoned it due to low efficiency during the launch stage(need to initiate every time). 
+
+similar question: [r - Snowfall sfApply() is slower than apply() - Stack Overflow](https://stackoverflow.com/questions/13209668/snowfall-sfapply-is-slower-than-apply)
+
+Are there any alternative methods to enhance the calculation speed?
+
+
+
+- interrupt opt without redundant calculation
+
+https://stackoverflow.com/questions/30587883/is-it-possible-to-stop-executing-of-r-code-inside-shiny-without-stopping-the-sh
+
+https://stackoverflow.com/questions/34226789/getting-shiny-to-update-the-ui-and-and-run-long-calculation-afterwards
+
+shiny stop calculation when change other operation
+
+For example, the user select an unwanted pairs, how to interrupt it instead of unnecessary waiting or reopen the project?  
+
+![](http://cos01.mugpeng.top/img/20240118134823.png)
+
+
+
+# Contact with me
+
+Feel free to talk with me if you find any bugs or have any suggestions. :)
+
+Email: mugpeng@foxmail.com
+

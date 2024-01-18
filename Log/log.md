@@ -120,6 +120,10 @@ Lower metrics, higher sensitivity
 
 # 0118
 
+Update readme.
+
+
+
 [Latest Options for Multi-threaded Shiny Apps - shiny / shinyapps.io - Posit Community (rstudio.com)](https://community.rstudio.com/t/latest-options-for-multi-threaded-shiny-apps/141732/1)
 
 [Long Running Tasks With Shiny: Challenges and Solutions | R-bloggers](https://www.r-bloggers.com/2018/07/long-running-tasks-with-shiny-challenges-and-solutions/)
