@@ -77,6 +77,16 @@ Then put the input file in the work dir.
 
 
 
+Alternatively, you can use this code to automatically download and execute the packaged shiny project. However, please note that the test project utilizes sampled features (only 100):
+
+```
+runGitHub("OmicsPharDB_github_testRun", "mugpeng")
+```
+
+![](http://cos01.mugpeng.top/img/20240119155745.png)
+
+
+
 # Tutorial
 
 ![image-20240116134743363](http://cos01.mugpeng.top/img/image-20240116134743363.png)
@@ -428,6 +438,16 @@ For example, the user select an unwanted pairs, how to interrupt it instead of u
 ![](http://cos01.mugpeng.top/img/20240118134823.png)
 
 
+
+- Out of memory
+
+I have decided to upload the project to my own server with 2 cores and 2GB of memory, as well as the shinyapp. However, both of them encountered a similar error while loading the packages:
+
+![](http://cos01.mugpeng.top/img/20240119160154.png)
+
+Interestingly, I have successfully deployed a similar project on ShinyApp without encountering this error: [Leukemia Multi-Omics_Drugs Sensitivity Database (mugpeng@foxmail.com)](https://mugpeng.shinyapps.io/leu_web_english_peng_v2/), even though it also required loading the `plotly` package.
+
+ 
 
 # Contact with me
 

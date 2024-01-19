@@ -1,5 +1,5 @@
 # Omics data ----
-if(config$test_mode == "T"){
+if(config_list$test_mode == "T"){
   # Test files
   load("Input/03/exp.Rda")
   load("Input/03/cnv.Rda")
@@ -7,7 +7,7 @@ if(config$test_mode == "T"){
 } else{
   load("Input/01/exp.Rda")
   load("Input/01/cnv.Rda")
-  load("Input/01/meth.Rda")  
+  load("Input/01/meth.Rda")
 }
 
 # Small file

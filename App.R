@@ -1,5 +1,7 @@
 # Preparation ----
 library(shiny)
+# library(rsconnect)
+# UI
 library(waiter) # wait while running
 library(DT)
 # library(shinydashboard)
@@ -11,19 +13,19 @@ library(data.table)
 
 # Plot
 library(UpSetR)
-library(ggplot2)
+library(ggpubr)
 library(plotly)
 # library(ggrepel)
 library(patchwork)
 
 # Multithreads
-library(snowfall)
+# library(snowfall)
 
 ## Debug
 # library(reactlog)
 
 # Load ----
-config <- config::get(
+config_list <- config::get(
   # config = "test"
   # Default is production mode
 )
