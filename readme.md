@@ -1,3 +1,11 @@
+# Contact with me
+
+Feel free to talk with me if you find any bugs or have any suggestions. :)
+
+Email: mugpeng@foxmail.com, mugpeng@outlook.com
+
+
+
 # TODO
 
 long time goal:
@@ -47,7 +55,13 @@ others:
 
 # Update
 
-- 01/17/24
+## 01/19/24
+
+Deploy the project mini version on shiny, github, private website.
+
+
+
+## 01/17/24
 
 Version 1.0 has been released, containing data from six projects: CTRP1, CTRP2, PRISM, GDSC1, GDSC2, and gCSI. It also includes three analysis modules offering four functions for further processing and exploration of the data.
 
@@ -63,6 +77,8 @@ You can scroll down this readme, and download the raw data, scripts and others a
 
 # How to run
 
+## Full version
+
 Fork the repository locally, open Rproj, just run `App.R`.
 
 ![image-20240117162353939](http://cos01.mugpeng.top/img/image-20240117162353939.png)
@@ -77,6 +93,8 @@ Then put the input file in the work dir.
 
 
 
+## Test version(maybe outmoded)
+
 Alternatively, you can use this code to automatically download and execute the packaged shiny project. However, please note that the test project utilizes sampled features (only 100):
 
 ```
@@ -84,6 +102,12 @@ runGitHub("OmicsPharDB_github_testRun", "mugpeng")
 ```
 
 ![](http://cos01.mugpeng.top/img/20240119155745.png)
+
+
+
+Or visit the website deployed at shiny:
+
+[OmicsPharDB (mugpeng@foxmail.com)](https://mugpeng.shinyapps.io/OmicsPharDB_v1/)
 
 
 
@@ -449,9 +473,7 @@ Interestingly, I have successfully deployed a similar project on ShinyApp withou
 
  
 
-# Contact with me
+After several attempts, it has become clear that the reason for the error is the large size of the full dataset, which exceeds the capacity of my small memory server. This conclusion is drawn from the fact that the project runs successfully with the test data. However, a new problem arises: if I still wish to run the project on my limited server, are there any alternative solutions? For instance, could utilizing RMySQL be a viable tactic?
 
-Feel free to talk with me if you find any bugs or have any suggestions. :)
-
-Email: mugpeng@foxmail.com
+![](http://cos01.mugpeng.top/img/20240119162242.png)
 
