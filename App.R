@@ -42,7 +42,7 @@ source("Modules/StatAnno.R")
 
 # Preprocess ----
 source("Script/Preprocess.R")
-env <- environment()
+# env <- environment()
 # Welcome notification
 str1 <- "Nice to meet you."
 str2 <- "Very welcome to my version 1.0. —24/01/17"

@@ -118,6 +118,30 @@ Lower metrics, higher sensitivity
 
 
 
+# 0122
+
+pull 到xenashiny里
+
+上传到zenodo
+
+
+
+这个为啥写死呢？
+
+![image-20240122173234307](图片/image-20240122173234307.png)
+
+
+
+# 0119
+
+load_data 修改
+
+pull 到xenashiny里
+
+上传到zenodo
+
+
+
 # 0118
 
 Update readme.

@@ -1,6 +1,9 @@
 # ignore
+# file
 .Rhistory
 .Rproj.user
+# dir
 /Input
+/Output
 /图片
 /rsconnect

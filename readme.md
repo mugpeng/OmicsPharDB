@@ -55,6 +55,24 @@ others:
 
 # Update
 
+## 01/22/24
+
+Upload data to zenodo: https://zenodo.org/records/10553615
+
+
+
+Btw, aliyunpan is really hard to use:
+
+![](http://cos01.mugpeng.top/img/b637d263b74782649ceb0aa4c2c765d.png)
+
+
+
+Fix the bugs:
+
+![](http://cos01.mugpeng.top/img/20240122154828.png)
+
+
+
 ## 01/19/24
 
 Deploy the project mini version on shiny, github, private website.
@@ -87,7 +105,7 @@ Fork the repository locally, open Rproj, just run `App.R`.
 
 Input data is very large, you can download throuth:
 
-OmicsPhar_240117 https://www.alipan.com/s/F3cnBAvXbrv  password: a20j 
+OmicsPhar_Front_Input_0122: https://zenodo.org/records/10553615
 
 Then put the input file in the work dir.
 
@@ -348,7 +366,7 @@ For more details, please check the `Others\DataInfo\Table1.docx`:
 
 More details on the raw data, scripts, and backend preprocessing can be downloaded:
 
-OmicsPharBackend_240118 https://www.alipan.com/s/NzpAeNYN4qX , 75qi 
+OmicsPharBackend_240122: [OmicsPhar Extra Data Repository (zenodo.org)](https://zenodo.org/records/10553615)
 
 The methodology and implementation details can be found in the preprint (may now be outdated):
 
@@ -477,3 +495,22 @@ After several attempts, it has become clear that the reason for the error is the
 
 ![](http://cos01.mugpeng.top/img/20240119162242.png)
 
+
+
+- Cannot find the object
+
+![](http://cos01.mugpeng.top/img/20240122154828.png)
+
+I found some objects created at the main App.R script cannot be accessed through the module scripts.
+
+For example, I create global env:
+
+![](http://cos01.mugpeng.top/img/20240122154943.png)
+
+And used in the module:
+
+![](http://cos01.mugpeng.top/img/20240122155005.png)
+
+But the beforementioned error appears.
+
+# .

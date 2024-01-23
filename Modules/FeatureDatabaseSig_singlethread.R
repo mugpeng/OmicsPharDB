@@ -90,10 +90,10 @@ serverFeatureDatabaseSig <- function(input, output, session){
         # Prepare
         select_features1_2 <- input$select_features1
         if(select_features1_2 == "mRNA") select_features1_2 <- "exp"
-        profile1 <- base::get(paste0(profile_comb[index,1], "_", select_features1_2), envir = env)
+        profile1 <- base::get(paste0(profile_comb[index,1], "_", select_features1_2), envir = globalenv())
         select_features2_2 <- input$select_features2
         if(select_features2_2 == "mRNA") select_features2_2 <- "exp"
-        profile2 <- base::get(paste0(profile_comb[index,2], "_", select_features2_2), envir = env)
+        profile2 <- base::get(paste0(profile_comb[index,2], "_", select_features2_2), envir = globalenv())
         # Select specific feature and all features data
         # con vs con ----
         if(input$select_features1 %in% c("drug", "cnv",
