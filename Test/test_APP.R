@@ -21,7 +21,7 @@ library(snowfall)
 
 
 # Load ----
-config <- config::get(
+config_list <- config::get(
   config = "test"
   # Default is production mode
 )
@@ -34,7 +34,7 @@ source("Test/Test_Module/TEST.R")
 
 # Preprocess ----
 source("Script/Preprocess.R")
-env <- environment()
+# env <- environment()
 ## Welcome notification
 # str1 <- "Nice to meet you."
 # str2 <- "Very welcome to my version 2.0. —22/05/16"

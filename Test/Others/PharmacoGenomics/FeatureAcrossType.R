@@ -76,7 +76,7 @@ serverFeatureAcrossType <- function(input, output, session){
         # Preprocess
         select_features <- input$select_features
         if(select_features == "mRNA") select_features <- "exp"
-        profile <- base::get(paste0(x, "_", select_features), envir = globalenv())
+        profile <- base::get(paste0(x, "_", select_features), envir = env)
         intersected_cells <- intersect(cell_anno$Name, colnames(profile))
         sel_profile <- profile[rownames(profile) %in% input$select_specific_feature,
                                match(intersected_cells, colnames(profile))]

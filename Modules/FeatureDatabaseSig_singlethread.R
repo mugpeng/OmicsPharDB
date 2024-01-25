@@ -79,7 +79,7 @@ serverFeatureDatabaseSig <- function(input, output, session){
     profile_vec2 <- profile_vec_list[[input$select_features2]]
     profile_comb <- expand.grid(profile_vec1, profile_vec2)
     re_list <- list()
-    withProgress(message = "Calculation", value = 0, {
+    withProgress(message = "Calculation(Please be patient)", value = 0, {
       waiter_show( # show the waiter
         html = spin_3(), # use a spinner
         color = transparent(0.1)

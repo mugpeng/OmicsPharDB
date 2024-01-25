@@ -90,20 +90,20 @@ serverFeatureDatabaseSig <- function(input, output, session){
         # Prepare
         select_features1_2 <- input$select_features1
         if(select_features1_2 == "mRNA") select_features1_2 <- "exp"
-        profile1 <- base::get(paste0(profile_comb[index,1], "_", select_features1_2), envir = parent.env(environment()))
+        profile1 <- base::get(paste0(profile_comb[index,1], "_", select_features1_2), envir = globalenv())
         select_features2_2 <- input$select_features2
         if(select_features2_2 == "mRNA") select_features2_2 <- "exp"
-        profile2 <- base::get(paste0(profile_comb[index,2], "_", select_features2_2), envir = parent.env(environment()))
+        profile2 <- base::get(paste0(profile_comb[index,2], "_", select_features2_2), envir = globalenv())
         # Select specific feature and all features data
         # con vs con ----
         if(input$select_features1 %in% c("drug", "cnv",
-                                   "protein",
-                                   "meth",
-                                   "mRNA") & 
+                                         "protein",
+                                         "meth",
+                                         "mRNA") & 
            input$select_features2 %in% c("drug", "cnv",
-                                   "protein",
-                                   "meth",
-                                   "mRNA")){
+                                         "protein",
+                                         "meth",
+                                         "mRNA")){
           intersected_cells <- intersect(colnames(profile1), colnames(profile2))
           fea <- profile1[rownames(profile1) %in% input$select_specific_feature,
                           match(intersected_cells, colnames(profile1))] %>% as.numeric()
@@ -112,9 +112,7 @@ serverFeatureDatabaseSig <- function(input, output, session){
           fea_nrow <- profile1[rownames(profile1) %in% input$select_specific_feature,match(intersected_cells, colnames(profile1))] %>% nrow()
           if(fea_nrow == 0 | length(intersected_cells) == 0){next}
           # Calculate
-          sfInit(parallel = TRUE, cpus = 4)
-          sfExport("db", "fea")
-          re <- sfLapply(1:nrow(db), function(x){
+          re <- lapply(1:nrow(db), function(x){
             re2 <- tryCatch(cor.test(fea, as.numeric(db[x,])),
                             error = function(x){NA})
             if(all(is.na(re2))){
@@ -128,31 +126,28 @@ serverFeatureDatabaseSig <- function(input, output, session){
                 effect = re2$estimate)
             }
           })
-          sfStop()
           re <- do.call(rbind, re)
           re$fea <- rownames(db)
           re <- na.omit(re)
           # re <- re[order(re$R),]
           # quantiles_80 <- quantile(re$R, probs = c(0.1, 0.9))[2]
           # quantiles_20 <- quantile(re$R, probs = c(0.1, 0.9))[1]
-        # dis vs dis ----
+          # dis vs dis ----
         } else if(!input$select_features1 %in% c("drug", "cnv",
-                                           "protein",
-                                           "meth",
-                                           "mRNA") & 
+                                                 "protein",
+                                                 "meth",
+                                                 "mRNA") & 
                   !input$select_features2 %in% c("drug", "cnv",
-                                           "protein",
-                                           "meth",
-                                           "mRNA")){
+                                                 "protein",
+                                                 "meth",
+                                                 "mRNA")){
           intersected_cells <- intersect(profile1[[2]], profile2[[2]]) %>% unique()
           fea <- profile1[profile1[[1]] %in% input$select_specific_feature,]
           db <- profile2[profile2[[2]] %in% intersected_cells,]
           db <- db[!db[[1]] %in% input$select_specific_feature,]
           db_feas <- unique(db[[1]])
           if(nrow(fea) == 0 | length(intersected_cells) == 0){next}
-          sfInit(parallel = TRUE, cpus = 4)
-          sfExport("db", "db_feas", "fea", "intersected_cells")
-          re <- sfLapply(1:length(db_feas), function(x){
+          re <- lapply(1:length(db_feas), function(x){
             fea_cells <- unique(as.data.frame(fea)[,2])
             sel_cells <- unique(as.data.frame(db[db[[1]] %in% db_feas[x],])[,2])
             yes_yes <- length(intersected_cells[intersected_cells %in% intersect(fea_cells, sel_cells)])
@@ -180,28 +175,25 @@ serverFeatureDatabaseSig <- function(input, output, session){
             }
             re3
           })
-          sfStop()
           re <- do.call(rbind, re)
           re$fea <- db_feas
           re <- na.omit(re)
           # con vs dis ----
         } else if(input$select_features1 %in% c("drug", "cnv",
-                                          "protein",
-                                          "meth",
-                                          "mRNA") & 
+                                                "protein",
+                                                "meth",
+                                                "mRNA") & 
                   !input$select_features2 %in% c("drug", "cnv",
-                                           "protein",
-                                           "meth",
-                                           "mRNA")){
+                                                 "protein",
+                                                 "meth",
+                                                 "mRNA")){
           intersected_cells <- intersect(colnames(profile1), profile2[[2]]) %>% unique()
           fea <- profile1[rownames(profile1) %in% input$select_specific_feature,
                           match(intersected_cells, colnames(profile1))]
           db <- profile2[profile2[[2]] %in% intersected_cells,]
           db_feas <- unique(db[[1]])
           if(nrow(fea) == 0 | length(intersected_cells) == 0){next}
-          sfInit(parallel = TRUE, cpus = 4)
-          sfExport("db", "db_feas", "fea", "db_feas")
-          re <- sfLapply(1:length(db_feas), function(x){
+          re <- lapply(1:length(db_feas), function(x){
             sel_cells <- as.data.frame(db[db[[1]] %in% db_feas[x],2])
             sel_cells <- sel_cells[,1]
             yes_drugs <- na.omit(as.numeric(fea[,colnames(fea) %in% sel_cells]))
@@ -223,26 +215,23 @@ serverFeatureDatabaseSig <- function(input, output, session){
             }
             re3
           })
-          sfStop()
           re <- do.call(rbind, re)
           re$fea <- db_feas
           re <- na.omit(re)
           # dis vs con ----
         } else if(!input$select_features1 %in% c("drug", "cnv",
-                                           "protein",
-                                           "meth",
-                                           "mRNA") & 
+                                                 "protein",
+                                                 "meth",
+                                                 "mRNA") & 
                   input$select_features2 %in% c("drug", "cnv",
-                                          "protein",
-                                          "meth",
-                                          "mRNA")){
+                                                "protein",
+                                                "meth",
+                                                "mRNA")){
           intersected_cells <- intersect(profile1[[2]], colnames(profile2)) %>% unique()
           db <- profile2[,colnames(profile2) %in% intersected_cells]
           sel_omics <- profile1$cells[profile1[[1]] %in% input$select_specific_feature] %>% unique()
           if(length(intersected_cells) == 0 | length(sel_omics) == 0){next}
-          sfInit(parallel = TRUE, cpus = 4)
-          sfExport("db", "sel_omics")
-          re <- sfLapply(1:nrow(db), function(x){
+          re <- lapply(1:nrow(db), function(x){
             # x = 1
             yes_drugs <- na.omit(as.numeric(db[x,colnames(db) %in% sel_omics]))
             no_drugs <- na.omit(as.numeric(db[x,!colnames(db) %in% sel_omics]))
@@ -262,7 +251,6 @@ serverFeatureDatabaseSig <- function(input, output, session){
               )
             }
           })
-          sfStop()
           re <- do.call(rbind, re)
           re$fea <- rownames(db)
           re <- na.omit(re)
@@ -347,6 +335,6 @@ serverFeatureDatabaseSig <- function(input, output, session){
     content = function(filename) {
       re_df <- do.call(rbind, re_list())
       data.table::fwrite(re_df, 
-              file = filename)
+                         file = filename)
     })
 }

@@ -29,6 +29,8 @@ important:
 
 - multithread or others to accelerate 
 
+- too much obj names (replicate obj names) 
+
 - ~~download button~~
 
 - ~~manual book~~

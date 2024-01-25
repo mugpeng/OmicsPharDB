@@ -118,6 +118,27 @@ Lower metrics, higher sensitivity
 
 
 
+# 0124
+
+```
+library(shiny)
+library(devtools)
+load_all()
+runApp("inst/shinyapp/", launch.browser = T)
+```
+
+
+
+![image-20240124152322425](图片/image-20240124152322425.png)
+
+omic 替换omic2
+
+
+
+R 的环境，有点过于复杂了
+
+
+
 # 0122
 
 pull 到xenashiny里
