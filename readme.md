@@ -15,6 +15,7 @@ long time goal:
   - database
   - in vivo
 - make useful function into R package for coding users
+- features combination
 
 
 
@@ -22,22 +23,18 @@ important:
 
 - specific type
   - compare after group, subtype compare (add into omic-drug pair)
-- features combination
 - make function into package for data scientist 
-
 - interrupt opt without redundant calculation
-
 - multithread or others to accelerate 
-
 - too much obj names (replicate obj names) 
-
+- Check and comment backend code
+  - Recheck the drug, omics data, if error or omit
+  - cell and drug filter, tsne plot, impute
+- ~~Upload consensus processed data~~
 - ~~download button~~
-
 - ~~manual book~~
-
 - ~~significant pairs~~
   - multicores?
-
 - ~~deploy to github~~
 
 
@@ -49,7 +46,6 @@ others:
 - ~~Specific test page(per function per test)~~
 - check discreate data(cells without omics info in sensitivity comparison)
 - check drug anno files, cell anno files
-- Upload consensus processed data
 - ~~drug similarity~~
 - ~~sensitivity and omics from different projects~~
 
@@ -345,6 +341,10 @@ CTRP1,2 drug:
 https://portals.broadinstitute.org/ctrp.v1/ 
 
 https://portals.broadinstitute.org/ctrp.v2.1/   
+
+[Index of /Public/Broad (nih.gov)](https://ctd2-data.nci.nih.gov/Public/Broad/)
+
+[CTD² Data from The Broad Institute - NCI (cancer.gov)](https://www.cancer.gov/ccg/research/functional-genomics/ctd2/data-portal/broad-institute)
 
 
 
