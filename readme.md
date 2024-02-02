@@ -1,3 +1,8 @@
+# OmicsPharDB
+A database that includes the largest published studies investigating the cancer cell lines to chemical compound treatment, and the association between drug sensitivity and multi-omics.
+
+
+
 # Contact with me
 
 Feel free to talk with me if you find any bugs or have any suggestions. :)
