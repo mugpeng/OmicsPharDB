@@ -90,10 +90,10 @@ serverFeatureDatabaseSig <- function(input, output, session){
         # Prepare
         select_features1_2 <- input$select_features1
         if(select_features1_2 == "mRNA") select_features1_2 <- "exp"
-        profile1 <- base::get(paste0(profile_comb[index,1], "_", select_features1_2), envir = globalenv())
+        profile1 <- base::get(paste0(profile_comb[index,1], "_", select_features1_2), envir = parent.env(environment()))
         select_features2_2 <- input$select_features2
         if(select_features2_2 == "mRNA") select_features2_2 <- "exp"
-        profile2 <- base::get(paste0(profile_comb[index,2], "_", select_features2_2), envir = globalenv())
+        profile2 <- base::get(paste0(profile_comb[index,2], "_", select_features2_2), envir = parent.env(environment()))
         # Select specific feature and all features data
         # con vs con ----
         if(input$select_features1 %in% c("drug", "cnv",
@@ -265,7 +265,7 @@ serverFeatureDatabaseSig <- function(input, output, session){
         re_list[[index]] <- re
         incProgress(1/nrow(profile_comb), detail = paste0("Doing part ", index, "(Total ", nrow(profile_comb), ")"))
         # Warning 
-        validate(
+        shiny::validate(
           need(length(profile_comb) > 0, "You have not chosen yet, or there is no result for this feature-database pair.")
         )
       }
@@ -283,7 +283,7 @@ serverFeatureDatabaseSig <- function(input, output, session){
       x$fea
     })
     # Warning 
-    validate(
+    shiny::validate(
       need(length(re_name_list1) > 0, "You have not chosen yet, or there is no result for this feature-database pair.")
     )
     # message(class(re_list()))
@@ -311,7 +311,7 @@ serverFeatureDatabaseSig <- function(input, output, session){
   # Result Table ----
   output$re_table <- DT::renderDataTable({
     re_df <- do.call(rbind, re_list())
-    validate(
+    shiny::validate(
       need(length(re_df) > 0, "You have not chosen yet, or there is no result for this feature-database pair.")
     )
     rownames(re_df) <- NULL
