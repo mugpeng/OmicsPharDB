@@ -100,6 +100,8 @@ You can scroll down this readme, and download the raw data, scripts and others a
 
 ## Full version
 
+ps: You can also visit the stable version: [mugpeng/OmicsPharDB at v1.0.0 (github.com)](https://github.com/mugpeng/OmicsPharDB/tree/v1.0.0)
+
 Fork the repository locally, open Rproj, just run `App.R`.
 
 ![image-20240117162353939](http://cos01.mugpeng.top/img/image-20240117162353939.png)
