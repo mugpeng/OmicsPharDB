@@ -3,6 +3,10 @@ A database that includes the largest published studies investigating the cancer 
 
 
 
+You can also visit the stable version: [mugpeng/OmicsPharDB at v1.0.0 (github.com)](https://github.com/mugpeng/OmicsPharDB/tree/v1.0.0)
+
+
+
 # Contact with me
 
 Feel free to talk with me if you find any bugs or have any suggestions. :)
@@ -99,8 +103,6 @@ You can scroll down this readme, and download the raw data, scripts and others a
 # How to run
 
 ## Full version
-
-ps: You can also visit the stable version: [mugpeng/OmicsPharDB at v1.0.0 (github.com)](https://github.com/mugpeng/OmicsPharDB/tree/v1.0.0)
 
 Fork the repository locally, open Rproj, just run `App.R`.
 
