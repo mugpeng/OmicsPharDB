@@ -71,6 +71,12 @@ others:
 
 
 
+Good news, you can also use full version by visiting [XenaShiny (hiplot.cn)](https://shiny.hiplot.cn/ucsc-xena-shiny/)：
+
+![](http://cos01.mugpeng.top/img/20240229143208.png)
+
+
+
 ## 01/22/24
 
 Upload data to zenodo: https://zenodo.org/records/10553615
