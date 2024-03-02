@@ -1,5 +1,7 @@
 # Preparation ----
 library(shiny)
+# library(rsconnect)
+# UI
 library(waiter) # wait while running
 library(DT)
 # library(shinydashboard)
@@ -13,11 +15,9 @@ library(data.table)
 library(UpSetR)
 library(ggpubr)
 library(plotly)
-library(ggrepel)
-library(patchwork)
 
-# Multithreads
-library(snowfall)
+# library(ggrepel)
+library(patchwork)
 
 
 # Load ----
@@ -28,9 +28,6 @@ config_list <- config::get(
 
 ## Data----
 source("Modules/LoadData.R")
-
-## Modules----
-source("Test/Test_Module/TEST.R")
 
 # Preprocess ----
 source("Script/Preprocess.R")
@@ -47,31 +44,37 @@ source("Script/Preprocess.R")
 #   )
 # )
 
+# Modules----
+source("Test/Test_Module/TEST.R")
+
 # UI ----
 ui <- tagList(
   autoWaiter(html = spin_loader(), color = transparent(0.5)),
   navbarPage("OmicsPharDB (mugpeng@foxmail.com)",
                  ## Contact ----
+                 ## Features database significant analysis ----
+                 tabPanel("Test",
+                          uiFeatureDatabaseSig("FeatureDatabaseSig")
+                 ),             
                  tabPanel("Contact",
                          fluidPage(
                            strong("Feel free to talk with me if you find any bugs or have any suggestions. :)"),
                            p(""),
                            p("Email: mugpeng@foxmail.com"),
                            p("github: https://github.com/mugpeng")
-                         )),
-                 ## Features database significant analysis ----
-                 tabPanel("Features database significant analysis",
-                          uiFeatureDatabaseSig("FeatureDatabaseSig")
-                 )
+                         ))
   )
 )
 
 # Server ----
 server <- function(input, output, session) {
-  # showModal(modal_notification)
+  # stop warn
+  storeWarn <- getOption("warn")
+  options(warn = -1) 
   # Features database significant analysis ----
   callModule(serverFeatureDatabaseSig, "FeatureDatabaseSig")
 }
 
 # Run ----
 shinyApp(ui = ui, server = server)
+

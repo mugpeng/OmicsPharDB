@@ -62,6 +62,15 @@ others:
 
 # Update
 
+## 03/02/24
+
+- Formalize the names in each pages
+- Add some useful descriptions for users
+- Allow user to define the thresholds to filter the pairs
+- change the module name from "Features database significant analysis" to "Scaling features associations analysis"
+
+
+
 ## 01/22/24
 
 Upload data to zenodo: https://zenodo.org/records/10553615
@@ -77,6 +86,10 @@ Btw, aliyunpan is really hard to use:
 Fix the bugs:
 
 ![](http://cos01.mugpeng.top/img/20240122154828.png)
+
+
+
+1.0: [mugpeng/OmicsPharDB at v1.0.0 (github.com)](https://github.com/mugpeng/OmicsPharDB/tree/v1.0.0)
 
 
 
@@ -115,6 +128,12 @@ Input data is very large, you can download throuth:
 OmicsPhar_Front_Input_0122: https://zenodo.org/records/10553615
 
 Then put the input file in the work dir.
+
+
+
+Good news, you can also use full version by visiting [XenaShiny (hiplot.cn)](https://shiny.hiplot.cn/ucsc-xena-shiny/)：
+
+![](http://cos01.mugpeng.top/img/20240229143208.png)
 
 
 
@@ -256,7 +275,7 @@ But not on the top in gCSI:
 
 ![image-20240116154828783](http://cos01.mugpeng.top/img/image-20240116154828783.png)
 
-### 3) Features database significant analysis
+### 3) Scaling features associations analysis
 
 This analysis module helped people to conduct a significant test between a targeted feature(a drug or an omic) and all the features in a particular feature dataset grouped by their collected databases in a large scale.
 
@@ -268,7 +287,7 @@ The effect and p-value is calculated depend on the data types:
 
 A feature-database pair will be considered statistically significant if both of the following criteria are met:
 
-1. The absolute value of the effect size is greater than 0.2.
+1. The absolute value of the effect size is greater than 0.2, 4, 4 in each case in default setting. You can change it in the specific case.
 2. The p-value is less than 0.05.
 
 
@@ -524,4 +543,23 @@ And used in the module:
 
 But the beforementioned error appears.
 
+
+
+# Bugs
+
+- ggplot Error in self$geom$rename_size && "size" %in% names(plot$mapping)
+
+![image-20240302191617078](图片/image-20240302191617078.png)
+
+
+
+Then ggplot was updated to the latest version:
+
+![f2793b9d874c98b3a1f7f3b75115bda](图片/f2793b9d874c98b3a1f7f3b75115bda.png)
+
+
+
+I reinstall the 3.4.4, solve the error.
+
 # .
+

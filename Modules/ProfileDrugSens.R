@@ -5,7 +5,7 @@ uiProfileDrugSens <- function(id){
       # Select drug sensitivity database ----
       sidebarPanel(
         selectInput(inputId = ns("Select_database"), 
-                    h4("Please select a Drug Sensitivity Database:"), 
+                    h4("Please select a drug sensitivity dataset:"), 
                     choices = c("GDSC1", "GDSC2", 
                                 "CTRP1", "CTRP2",
                                 "Prism", "gCSI")

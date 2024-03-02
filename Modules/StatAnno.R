@@ -3,7 +3,7 @@ uiStatAnno <- function(id){
   fluidPage(
     column(12,
            navlistPanel(
-             tabPanel("Overall Drug Info",
+             tabPanel("Overall Drug Information",
                       tabsetPanel(
                         tabPanel("Drug and Cell Counts",
                                  plotOutput(ns("p_count_drugandcell"))

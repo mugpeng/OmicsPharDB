@@ -1,3 +1,110 @@
+# module1 ----
+profile <- base::get(paste0("ccle", "_", "mutation_gene"))
+sel_profile <- profile[profile[[1]] %in% "ABCC3",]
+if(nrow(sel_profile) == 0){ return(NULL) }
+## If cells in sel_profile, label "yes"
+sel_profile_df1 <- data.frame(
+  cells = sel_profile$cells,
+  events = "yes"
+)
+sel_profile_df2 <- data.frame(
+  cells = profile$cells[!profile$cells %in% sel_profile$cells],
+  events = "no"
+) %>% unique()
+sel_profile_df <- rbind(sel_profile_df1, sel_profile_df2)
+sel_profile_df <- base::merge(sel_profile_df, cell_anno[,1:2],
+                              by.x = "cells", by.y = "Name")
+sel_profile_fq <- as.data.frame(prop.table(table(sel_profile_df$events, sel_profile_df$Type), margin = 2))
+colnames(sel_profile_fq) <- c("events", "Type", "Freq")
+# Plot
+pval <- chisq.test(table(sel_profile_df$events, sel_profile_df$Type))$p.value %>% round(4)
+pval <- case_when(
+  pval < 0.01 ~ "< 0.01",
+  pval < 0.05 ~ "< 0.05",
+  T ~ "> 0.05"
+)
+sel_profile_fq$Type <- factor(sel_profile_fq$Type)
+p <- ggplot(sel_profile_fq) + 
+  geom_bar(aes(x = Type, y= Freq*100, fill = events), color = "white",stat = "identity",width = 0.7,linewidth = 0.5)+ 
+  theme_bw() + scale_fill_manual(values = c("#BEBADAFF", "#FB8072FF")) + 
+  theme(
+    axis.title.x = element_blank(), 
+    axis.title.y = element_text(size = 15),
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.text.x = element_text(angle = 60, vjust = 1, hjust = 1),
+    legend.title = element_text(size = 15, face = "bold"),
+    legend.text = element_text(size = 15)
+  ) + scale_x_discrete(limit =levels(factor(unique(cell_anno$Type)))) + 
+  labs(x='',y = 'Percentage(%)',
+       title = x, 
+       subtitle = paste0("Chi-Squared, p ", pval)) 
+
+# module3 point ----
+omics_search_list1_sel <- omics_search_list1[["mRNA"]]
+x <- 2
+omics_sel <- omics_search_list1_sel[[x]][[1]]
+drugs_sel <- omics_search_list1_sel[[x]][[2]]
+
+select_specific_drug <- "YM-155"
+select_specific_omic <- "ABCC3"
+
+sel_omics <- omics_sel[rownames(omics_sel) %in% select_specific_omic,] %>% as.numeric()
+# sel_omics <- omics_sel[rownames(omics_sel) %in% "TSPAN6",] %>% as.numeric()
+sel_drugs <- drugs_sel[rownames(drugs_sel) %in% select_specific_drug,] %>% as.numeric()
+# sel_drugs <- drugs_sel[rownames(drugs_sel) %in% "YM-155",] %>% as.numeric()
+if(length(na.omit(sel_omics)) == 0 | length(na.omit(sel_drugs)) == 0){ return(NULL) }
+cor_df <- data.frame(
+  genes = sel_omics,
+  drugs = sel_drugs
+)
+p <- ggscatter(cor_df, x = "genes", y = "drugs",
+               alpha = 0.2) + 
+  stat_cor(size = 6, method = "spearman") + stat_smooth(formula = y ~ x,method = "lm") + theme_bw() + 
+  theme(
+    axis.title = element_blank(),
+    title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 12)
+  ) + ggtitle(names(omics_search_list1_sel)[[x]])
+p
+p_list <- list(p,p,p,p,p,p,p,p,p)
+wrap_plots(p_list, ncol = 3)
+
+# module3 box ----
+omics_search_list2_sel <- omics_search_list2[["mutation_gene"]]
+x <- 4
+omics_sel <- omics_search_list2_sel[[x]][[1]]
+drugs_sel <- omics_search_list2_sel[[x]][[2]]
+
+select_specific_drug <- "YM-155"
+select_specific_omic <- "ABCC3"
+
+sel_omics <- omics_sel$cells[omics_sel[[1]] %in% select_specific_omic] %>% unique()
+# sel_omics <- omics_sel$cells[omics_sel[[1]] %in% "TP53"] %>% unique()
+sel_drugs <- drugs_sel[rownames(drugs_sel) %in% select_specific_drug,] %>% as.numeric()
+# sel_drugs <- drugs_sel[rownames(drugs_sel) %in% "YM-155",] %>% as.numeric()
+yes_drugs <- sel_drugs[colnames(drugs_sel) %in% sel_omics] %>% na.omit()
+no_drugs <- sel_drugs[!colnames(drugs_sel) %in% sel_omics] %>% na.omit()
+if(length(yes_drugs) == 0 | length(no_drugs) == 0){ return(NULL) }
+box_df <- data.frame(
+  drugs = c(no_drugs, yes_drugs),
+  events = rep(c("no","yes"), times = c(length(no_drugs), length(yes_drugs))))
+p <- ggboxplot(data = box_df, x = "events", y = "drugs",
+               fill = "events", palette = c("#BEBADAFF", "#FB8072FF"),
+               add = "jitter", add.params = list(alpha = 0.2)) + 
+  stat_compare_means(size = 6, label.x = 0.8) + theme_bw() + 
+  theme(
+    axis.title = element_blank(),
+    title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.text.x = element_text(size = 15),
+    legend.position = "none"
+  ) + coord_cartesian(ylim = c(0, max(box_df$drugs) + max(box_df$drugs)/20)) +  
+  ggtitle(names(omics_search_list2_sel)[[x]])
+p
+p_list <- list(p,p,p,p,p,p,p,p,p)
+
+# module4 ----
 select_features1 <- "fusion"
 select_specific_feature <- "RARG--AAAS"
 select_features2 <- "drug"
