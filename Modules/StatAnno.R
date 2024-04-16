@@ -50,7 +50,3 @@ serverStatAnno <- function(input, output, session){
     cell_anno
   }, options = list(scrollX = TRUE), selection = 'single')
 }
-
-# StatAnnoMerge <- function(){
-#   uiStatAnno("StatAnno")
-# }

@@ -127,9 +127,9 @@ serverDrugOmicPair <- function(input, output, session){
           stat_compare_means(size = 6, label.x = 0.8) + theme_bw() + 
           theme(
             axis.title = element_blank(),
-            title = element_text(size = 15, face = "bold"),
-            axis.text = element_text(size = 12),
-            axis.text.x = element_text(size = 15),
+            title = element_text(size = 20, face = "bold"),
+            axis.text = element_text(size = 18),
+            # axis.text.x = element_text(size = 17),
             legend.position = "none"
           ) + 
           coord_cartesian(ylim = c(0, max(box_df$drugs) + 
@@ -142,7 +142,7 @@ serverDrugOmicPair <- function(input, output, session){
     shiny::validate(
       need(length(p_list) > 0, "You have not chosen yet, or there is no result for this drug-omic pair.")
     )
-    p <- wrap_plots(p_list, ncol = 3)
+    p <- cowplot::plot_grid(plotlist = p_list, ncol = 3, align = "hv")
     return(p)
   })
 }

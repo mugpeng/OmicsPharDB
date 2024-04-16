@@ -68,7 +68,7 @@ uiFeatureDatabaseSig <- function(id){
     h5("3. In the case of", strong(" discrete features"), " against ", strong("discrete datasets"), ", the effect size is quantified using the log2 odds ratio, with p-values calculated via the Chi-squared test;"),
     h5("The continuous features comprise Copy Number Data, DNA Methylation, mRNA Expression, Protein Expression, and drug sensitivity. On the other hand, the discrete features encompass Gene Fusion, Gene Mutation, and Gene Site Mutation."),
     h5("The Frequency table contains two columns: the count column, which records the number of significant pairs, and the proportion column, representing the ratio of significant pairs to total pairs."),
-    h5("You can change the threshold to filter the effect size.")
+    h5("You can change the threshold to filter the effect size. The result table indicates a 'yes' in the Significance column when the p-value is below 0.05 and the effect size falls above the threshold defined by the user for the feature pair.")
   )
 }
 

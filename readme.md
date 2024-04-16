@@ -567,5 +567,15 @@ Then ggplot was updated to the latest version:
 
 I reinstall the 3.4.4, solve the error.
 
+[Index of /src/contrib/Archive/ggplot2 (r-project.org)](https://cran.r-project.org/src/contrib/Archive/ggplot2/)
+
+```
+install.packages("ggplot2_3.4.4.tar.gz",repos=NULL)
+```
+
+
+
+
+
 # .
 
