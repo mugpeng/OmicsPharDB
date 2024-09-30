@@ -1,11 +1,16 @@
 # OmicsPharDB
 A database that includes the largest published studies investigating the cancer cell lines to chemical compound treatment, and the association between drug sensitivity and multi-omics.
 
-
-
 You can also visit the stable version: [mugpeng/OmicsPharDB at v1.0.0 (github.com)](https://github.com/mugpeng/OmicsPharDB/tree/v1.0.0)
 
+This project is merged into [openbiox/UCSCXenaShiny: 📊 An R package for interactively exploring UCSC Xena https://xenabrowser.net/datapages/; Book: https://lishensuo.github.io/UCSCXenaShiny_Book; App online: https://shiny.hiplot.cn/ucsc-xena-shiny/, https://shiny.zhoulab.ac.cn/UCSCXenaShiny](https://github.com/openbiox/UCSCXenaShiny), and will **NOT** be maintained anymore.
 
+Or visit [XenaShiny (hiplot.cn)](https://shiny.hiplot.cn/ucsc-xena-shiny/) by using the Pharmacogenics analysis module.
+
+Our work has been published: [Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny | Communications Biology (nature.com)](https://www.nature.com/articles/s42003-024-06891-2)
+
+Please cite when you used in your study:
+Li, S., Peng, Y., Chen, M. et al. Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny. Commun Biol 7, 1200 (2024). https://doi.org/10.1038/s42003-024-06891-2
 
 # Contact with me
 
@@ -61,6 +66,19 @@ others:
 
 
 # Update
+
+## 09/30/24
+This repository is archived. 
+
+This project is merged into [openbiox/UCSCXenaShiny: 📊 An R package for interactively exploring UCSC Xena https://xenabrowser.net/datapages/; Book: https://lishensuo.github.io/UCSCXenaShiny_Book; App online: https://shiny.hiplot.cn/ucsc-xena-shiny/, https://shiny.zhoulab.ac.cn/UCSCXenaShiny](https://github.com/openbiox/UCSCXenaShiny), and will **NOT** be maintained anymore.
+
+Or visit [XenaShiny (hiplot.cn)](https://shiny.hiplot.cn/ucsc-xena-shiny/) by using the Pharmacogenics analysis module.
+
+Happy to announce. Our work has been published: [Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny | Communications Biology (nature.com)](https://www.nature.com/articles/s42003-024-06891-2)
+Celebration!!!
+
+Please cite when you used in your study:
+Li, S., Peng, Y., Chen, M. et al. Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny. Commun Biol 7, 1200 (2024). https://doi.org/10.1038/s42003-024-06891-2
 
 ## 03/02/24
 
