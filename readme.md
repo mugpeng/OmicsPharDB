@@ -10,6 +10,7 @@ Or visit [XenaShiny (hiplot.cn)](https://shiny.hiplot.cn/ucsc-xena-shiny/) by us
 Our work has been published: [Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny | Communications Biology (nature.com)](https://www.nature.com/articles/s42003-024-06891-2)
 
 Please cite when you used in your study:
+
 Li, S., Peng, Y., Chen, M. et al. Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny. Commun Biol 7, 1200 (2024). https://doi.org/10.1038/s42003-024-06891-2
 
 # Contact with me
@@ -78,6 +79,7 @@ Happy to announce. Our work has been published: [Facilitating integrative and pe
 Celebration!!!
 
 Please cite when you used in your study:
+
 Li, S., Peng, Y., Chen, M. et al. Facilitating integrative and personalized oncology omics analysis with UCSCXenaShiny. Commun Biol 7, 1200 (2024). https://doi.org/10.1038/s42003-024-06891-2
 
 ## 03/02/24
