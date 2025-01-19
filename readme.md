@@ -1,3 +1,5 @@
+This repository is archived. I will move the full database into a new project DROMA(Drug Response Omics association MAp) https://github.com/mugpeng/DROMA . 
+
 # OmicsPharDB
 A database that includes the largest published studies investigating the cancer cell lines to chemical compound treatment, and the association between drug sensitivity and multi-omics.
 
